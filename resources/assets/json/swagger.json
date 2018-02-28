@@ -1,0 +1,107 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is an API to get NHTSA vehicles information.",
+    "version": "1.0.0",
+    "title": "PHP API Vehicles",
+    "contact": {
+      "email": "gabriel.br@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/vehicles/{modelYear}/{manufacture}/{model}": {
+      "get": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Return a list of all vehicles with this manufacture and model from this model-year. For valid response send always a numeric value in modelYear, anything nonintegers will generate empty results from API",
+        "parameters": [
+          {
+            "name": "modelYear",
+            "in": "path",
+            "description": "the year of the model that you want to search",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "manufacture",
+            "in": "path",
+            "description": "the manufacture name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "path",
+            "description": "the name of the model that you want to search",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "withRating",
+            "in": "query",
+            "description": "it must be set as true if you want to return the CrashRating of all of the vehicles in the result list, something else will just not return the CrashRating",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/vehicles": {
+      "post": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Return a list of all vehicles with specified manufacture, model and model-year. For valid response all the params needs to be provided.",
+        "parameters": [
+          {
+            "name": "modelYear",
+            "in": "formData",
+            "description": "the year of the model that you want to search",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "manufacture",
+            "in": "formData",
+            "description": "the manufacture name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "formData",
+            "description": "the name of the model that you want to search",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "withRating",
+            "in": "query",
+            "description": "it must be set as true if you want to return the CrashRating of all of the vehicles in the result list, something else will just not return the CrashRating",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
